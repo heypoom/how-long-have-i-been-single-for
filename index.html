@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>เราโสดมากี่ปีแล้ว</title>
+
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 90vh;
+
+        padding: 1em;
+      }
+
+      h1,
+      #single-for,
+      a {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
+          'Sukhumvit Set', sans-serif;
+      }
+
+      h1 {
+        font-size: 5em;
+        font-weight: 300;
+        color: #2f3640;
+        text-align: center;
+      }
+
+      #single-for {
+        font-size: 3em;
+        font-weight: 400;
+      }
+
+      #contact {
+        color: #0097e6;
+        text-decoration: none;
+        font-size: 1.2em;
+      }
+    </style>
+
+    <script>
+      const qs = new URLSearchParams(location.search)
+      const year = qs.get('birth') || '11-07-2001'
+      const name = qs.get('name') || 'ภูมิ'
+      const contact = qs.get('contact')
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const birthDate = new Date(year)
+        const singleForYear =
+          new Date().getUTCFullYear() - birthDate.getUTCFullYear() - 1
+
+        const singleForEl = document.querySelector('#single-for')
+        singleForEl.innerText = singleForYear
+
+        if (name) {
+          const nameEl = document.querySelector('#name')
+          nameEl.innerText = name
+
+          document.title = name + 'โสดมากี่ปีแล้ว'
+        }
+
+        if (contact) {
+          const contactEl = document.querySelector('#contact')
+          contactEl.href = contact
+        }
+      })
+    </script>
+  </head>
+  <body>
+    <h1>
+      <span id="name">ภูมิ</span><strong>โสด</strong>มา
+      <span id="single-for">∞</span> ปีแล้ว 😔
+    </h1>
+
+    <a href="https://github.com/phoomparin" target="_blank" id="contact">
+      #จีบได้นะครับ
+    </a>
+  </body>
+</html>
