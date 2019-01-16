@@ -55,6 +55,7 @@
       }
     </style>
 
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
     <script>
       const qs = new URLSearchParams(location.search)
       const year = qs.get('birth') || '07/11/2001'
@@ -84,6 +85,19 @@
           const contactEl = document.querySelector('#contact')
           contactEl.href = contact
         }
+
+        document.getElementById('capture').addEventListener('click', (e) => {
+          e.preventDefault();
+          html2canvas(document.getElementById('content')).then((canvas) => {
+              var output  = document.createElement('a');
+              output.href = canvas.toDataURL("image/png");
+              output.taget = '_blank';
+              output.download = "banner.png";
+              output.appendChild(canvas);
+              document.getElementById('canvas_wrapper').appendChild(output);
+          });
+
+        })
       })
     </script>
 
@@ -93,13 +107,19 @@
     />
   </head>
   <body>
-    <h1>
-      <span id="name">ภูมิ</span><strong>โสด</strong>มา
-      <span id="single-for">∞</span> ปีแล้ว 😔
-    </h1>
+    <div id="content">
+      <h1>
+        <span id="name">ภูมิ</span><strong>โสด</strong>มา
+        <span id="single-for">∞</span> ปีแล้ว 😔
+      </h1>
 
-    <a href="https://github.com/phoomparin" target="_blank" id="contact">
-      #จีบได้นะครับ
-    </a>
+      <a href="https://github.com/phoomparin" target="_blank" id="contact">
+        #จีบได้นะครับ
+      </a>
+    </div>
+    <div class="control">
+      <button id="capture">Capture</button>
+      <div id="canvas_wrapper"></div>
+    </div>
   </body>
 </html>
