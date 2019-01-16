@@ -29,6 +29,9 @@
           Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
       }
 
+      #content{
+        padding: 1.5rem;
+      }
       h1 {
         display: flex;
         align-items: center;
@@ -54,12 +57,28 @@
         font-size: 1.2em;
       }
       #capture{
+        position: fixed;
+        right: 1rem;
+        bottom: 1rem;
         text-align: center;
         border: solid 1px black;
         background: transparent;
-        font-size: 2em;
+        font-size: 0;
         padding: 0.35em 0.5em;
-        border-radius: 0.35em;
+        border-radius: 999px;
+      }
+      #capture::before{
+        content: " 📷 ";
+        display: inline;
+        font-size: 2rem;
+        line-height: 3.75rem;
+        margin: 0.5rem;
+      }
+      #canvas_wrapper canvas{
+        -webkit-box-shadow: 0 0 10px 1px rgba(0,0,0,0.5);
+        box-shadow: 0 0 10px 1px rgba(0,0,0,0.5);
+        height: 32px;
+        height: 7.5vh;
       }
     </style>
 
@@ -101,6 +120,7 @@
                 output.href = canvas.toDataURL("image/png");
                 output.taget = '_blank';
                 output.download = "banner.png";
+                canvas.style = "";
                 output.appendChild(canvas);
               document.getElementById('canvas_wrapper').innerHTML = '';
               document.getElementById('canvas_wrapper').appendChild(output);
