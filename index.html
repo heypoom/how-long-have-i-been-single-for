@@ -52,8 +52,12 @@
 
       document.addEventListener('DOMContentLoaded', () => {
         const birthDate = new Date(year)
-        const singleForYear =
+        let singleForYear =
           new Date().getUTCFullYear() - birthDate.getUTCFullYear() - 1
+
+        if (isNaN(singleForYear)) {
+          singleForYear = '∞'
+        }
 
         const singleForEl = document.querySelector('#single-for')
         singleForEl.innerText = singleForYear
