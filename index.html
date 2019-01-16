@@ -53,6 +53,14 @@
         text-decoration: none;
         font-size: 1.2em;
       }
+      #capture{
+        text-align: center;
+        border: solid 1px black;
+        background: transparent;
+        font-size: 2em;
+        padding: 0.35em 0.5em;
+        border-radius: 0.35em;
+      }
     </style>
 
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
@@ -90,11 +98,13 @@
           e.preventDefault();
           html2canvas(document.getElementById('content')).then((canvas) => {
               var output  = document.createElement('a');
-              output.href = canvas.toDataURL("image/png");
-              output.taget = '_blank';
-              output.download = "banner.png";
-              output.appendChild(canvas);
+                output.href = canvas.toDataURL("image/png");
+                output.taget = '_blank';
+                output.download = "banner.png";
+                output.appendChild(canvas);
+              document.getElementById('canvas_wrapper').innerHTML = '';
               document.getElementById('canvas_wrapper').appendChild(output);
+              output.click();
           });
 
         })
